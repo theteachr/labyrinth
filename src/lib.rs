@@ -1,5 +1,4 @@
-mod functional;
-
+pub mod functional;
 
 trait Stack {
     fn push(self, item: i32) -> Self;
