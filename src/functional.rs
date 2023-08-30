@@ -6,8 +6,8 @@ pub enum List<T> {
     Elem(T, Box<List<T>>),
 }
 
-impl<T> List<T> {
-    pub fn new() -> Self {
+impl<T> Default for List<T> {
+    fn default() -> Self {
         Self::Empty
     }
 }
@@ -27,7 +27,7 @@ impl<T> Stack<T> for List<T> {
     fn peek(&self) -> Option<&T> {
         match self {
             Self::Empty => None,
-            Self::Elem(i, _) => Some(&i),
+            Self::Elem(i, _) => Some(i),
         }
     }
 }

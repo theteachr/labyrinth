@@ -13,14 +13,14 @@ mod tests {
 
     #[test]
     fn push_and_peek_work() {
-        assert_eq!(List::<u8>::new().push(4).peek(), Some(&4));
+        assert_eq!(List::<u8>::default().push(4).peek(), Some(&4));
     }
 
     #[test]
     fn pop_works() {
-        assert_eq!(List::<u8>::new().pop(), None);
+        assert_eq!(List::<u8>::default().pop(), None);
         assert_eq!(
-            List::new().push(4).push(3).pop(),
+            List::default().push(4).push(3).pop(),
             Some((3, Box::new(List::Elem(4, Box::new(List::Empty)))))
         );
     }
