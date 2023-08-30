@@ -1,33 +1,33 @@
 use crate::Stack;
 
 #[derive(Debug, Eq, PartialEq)]
-pub enum List {
+pub enum List<T> {
     Empty,
-    Elem(i32, Box<List>),
+    Elem(T, Box<List<T>>),
 }
 
-impl List {
+impl<T> List<T> {
     pub fn new() -> Self {
         Self::Empty
     }
 }
 
-impl Stack for List {
-    fn push(self, elem: i32) -> Self {
+impl<T> Stack<T> for List<T> {
+    fn push(self, elem: T) -> Self {
         Self::Elem(elem, Box::new(self))
     }
 
-    fn pop(self) -> Option<(i32, Box<Self>)> {
+    fn pop(self) -> Option<(T, Box<Self>)> {
         match self {
             Self::Empty => None,
             Self::Elem(i, list) => Some((i, list)),
         }
     }
 
-    fn peek(&self) -> Option<i32> {
+    fn peek(&self) -> Option<&T> {
         match self {
             Self::Empty => None,
-            Self::Elem(i, _) => Some(*i),
+            Self::Elem(i, _) => Some(&i),
         }
     }
 }
